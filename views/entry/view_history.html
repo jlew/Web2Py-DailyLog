@@ -1,0 +1,31 @@
+{{extend 'layout.html'}}
+{{=A("Back to Entry", _href=URL("entry","view", args=history[0].current_record))}}
+<style>
+    .diff_sub{
+        background: #FAA;
+    }
+    .diff_add{
+        background: #AFA;
+    }
+    .diff_chg{
+        background: #FF7;
+    }
+</style>
+<ul>
+{{
+current_entry = None
+for entry in history:
+    old_entry = current_entry
+	current_entry = entry
+    if old_entry:}}
+		<li>
+            {{=A(timeToText(current_entry.modified_on),
+            _href="#", _onclick=XML("$('#difid_%s').toggle('slow');"%current_entry.id))}}<br/>
+            <div id="difid_{{=current_entry.id}}" style="display:none;">
+            	{{=XML(diff(old_entry.body, current_entry.body, old_entry.modified_on, current_entry.modified_on))}}
+        	</div>
+	
+    </li>
+	{{pass}}
+{{pass}}
+</ul>

@@ -1,0 +1,8 @@
+{{extend 'layout.html'}}
+
+{{for entry in entries:}}
+<div>
+    <h3>{{=A(B(timeToText(entry.created_on)), _href=URL("entry","view", args=entry.id))}}</h3>
+    <div>{{=MARKMIN(smart_truncate(entry.body, length=500))}}</div>
+</div>
+{{pass}}

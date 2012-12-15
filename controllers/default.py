@@ -11,8 +11,8 @@
 
 
 def index():
-    entry = db(db.entry.id>0).select(orderby=db.entry.created_on).first()
-    return dict(entry=entry, tags=db(db.tags.id>0).select(db.tags.tag, db.tags.tag.count(), groupby=db.tags.tag))
+    entry = db(db.entry.id>0).select(orderby=~db.entry.created_on).first()
+    return dict(entry=entry)
 
 
 def user():

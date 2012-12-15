@@ -1,0 +1,20 @@
+{{extend 'layout.html'}}
+{{if 'tags' in globals():}}
+    <h1>Tag Cloud</h1>
+    {{for row in tags:
+        tag = row['tag']
+        count = row['count']
+        if count / 10.0 <= 1:
+            size = count / 10.0 + 1
+        elif count / 10.0 > 3:
+            size = 3
+        else:
+            size = count / 10.0
+            pass
+    }}
+    {{=SPAN(A("%s (%d)" % (tag, count), _href=URL('entry','tags', args=tag), _style="font-size: " + str( size )+ "em;") )}}
+    {{pass}}
+{{else:}}
+	
+{{=BEAUTIFY(response._vars)}}
+{{pass}}

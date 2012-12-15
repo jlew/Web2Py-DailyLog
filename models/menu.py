@@ -24,7 +24,8 @@ response.google_analytics_id = None
 
 response.menu = [
     (T('Home'), False, URL('default', 'index'), []),
-    (T('Entries'), False, URL('entry', 'index'), [
+    (T('Entries'), False, '#', [
+        (T('Entry List'), False, URL('entry', 'index'), []),
         (T('New Entry'), False, URL('entry', 'new'), []),
         (T('Tag List'), False, URL('entry', 'tags'), []),
     ]),

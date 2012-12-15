@@ -1,6 +1,7 @@
 {{extend 'layout.html'}}
-<h1>{{=entry.created_on}}</h1>
-<div>Created by {{="%(first_name)s %(last_name)s" %db.auth_user[entry.created_by]}} {{=A(T("Edit"), _href=URL("update", args=entry.id))}} | {{=A(T("View history"), _href=URL("view_history", args=entry.id))}}</div>
+<h1>{{=timeToText(entry.created_on)}}</h1>
+<div>Created by {{=author.first_name}} {{=author.last_name}}</div>
+<div style="float: right;">{{=A(T("Edit"), _href=URL("update", args=entry.id))}} | {{=A(T("View history"), _href=URL("view_history", args=entry.id))}}</div>
+<div>Taglist: {{=XML(",".join([A("#%s"%x.tag, _href=URL("entry","tags", args=x.tag)).xml() for x in entry.tags.select()]))}}</div>
 
 <div class="entry_body">{{=MARKMIN(entry.body)}}</div>
-<div>Taglist: {{=XML(",".join([A("#%s"%x.tag, _href=URL("entry","tags", args=x.tag)).xml() for x in entry.tags.select()]))}}
