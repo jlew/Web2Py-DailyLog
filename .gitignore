@@ -161,3 +161,10 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+#################
+## Web2Py folders
+#################
+databases/*
+sessions/*
+progress.log
